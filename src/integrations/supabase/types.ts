@@ -14,7 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      listings: {
+        Row: {
+          created_at: string
+          expiry_date: string | null
+          id: string
+          medicine_name: string
+          quantity: number
+          strength: string | null
+          type: Database["public"]["Enums"]["listing_type"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          expiry_date?: string | null
+          id?: string
+          medicine_name: string
+          quantity: number
+          strength?: string | null
+          type: Database["public"]["Enums"]["listing_type"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          expiry_date?: string | null
+          id?: string
+          medicine_name?: string
+          quantity?: number
+          strength?: string | null
+          type?: Database["public"]["Enums"]["listing_type"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          city: string
+          created_at: string
+          email: string
+          id: string
+          is_subscribed: boolean
+          pharmacy_name: string
+          phone: string
+          updated_at: string
+        }
+        Insert: {
+          city: string
+          created_at?: string
+          email: string
+          id: string
+          is_subscribed?: boolean
+          pharmacy_name: string
+          phone: string
+          updated_at?: string
+        }
+        Update: {
+          city?: string
+          created_at?: string
+          email?: string
+          id?: string
+          is_subscribed?: boolean
+          pharmacy_name?: string
+          phone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +88,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      listing_type: "available" | "needed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +215,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      listing_type: ["available", "needed"],
+    },
   },
 } as const
